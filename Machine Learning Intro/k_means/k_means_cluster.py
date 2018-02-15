@@ -52,7 +52,7 @@ feature_3 = "total_payments"
 poi  = "poi"
 features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
-poi, finance_features = targetFeatureSplit( data )
+poi, finance_features = targetFeatureSplit(data)
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
@@ -74,11 +74,15 @@ clf.fit(finance_features)
 
 pred = clf.labels_
 
-print(data[:,2].max())
-print((data[:,2][np.nonzero(data[:,2])]).min())
+max_stock = data[:,2].max()
+min_stock = (data[:,2][np.nonzero(data[:,2])]).min()
+print(max_stock)
+print(min_stock)
 
-print(data[:,1].max())
-print((data[:,1][np.nonzero(data[:,1])]).min())
+max_salary = data[:,1].max()
+min_salary = (data[:,1][np.nonzero(data[:,1])]).min()
+print(max_salary)
+print(min_salary)
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
@@ -86,3 +90,37 @@ try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print("no predictions object named pred found, no clusters to plot")
+
+
+
+from sklearn import preprocessing
+
+salary = [min_salary, 200000.0, max_salary]
+stock = [min_stock, 1000000.0, max_stock]
+
+salary = np.array([[e] for e in salary])
+stock = np.array([[e] for e in stock])
+
+scaler_salary = preprocessing.MinMaxScaler()
+scaler_stock = preprocessing.MinMaxScaler()
+
+rescaled_salary = scaler_salary.fit_transform(salary)
+rescaled_stock = scaler_salary.fit_transform(stock)
+
+print(rescaled_salary)
+print(rescaled_stock)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
