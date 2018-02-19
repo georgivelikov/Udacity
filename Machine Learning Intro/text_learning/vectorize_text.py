@@ -51,6 +51,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         email_text = parseOutText(email)
         ### use str.replace() to remove any instances of the words
         ### ["sara", "shackleton", "chris", "germani"]
+        ### "sshacklensf", "cgermannsf" are from the next task - fin_signature.py
         rep = ["sara", "shackleton", "chris", "germani", "sshacklensf", "cgermannsf"]
         for r in rep:
              email_text = email_text.replace(r, '')
